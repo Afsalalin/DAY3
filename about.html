@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laura Salon</title>
+    <link rel="stylesheet" href="aboutstyles.css">
+</head>
+<body>
+
+    
+    <div class="navbar">
+        <div class="brand">
+            <img src="images/Screenshot 2024-09-10 111130.png">
+        </div>
+        <div class="menu">
+            <a href="index.html">Home</a>
+            <a href="about.html">About us</a>
+            <a href="signin.html">Sign in</a>
+            <a href="signup.html">Sign up</a>
+            <a href="contact.html">Contact us</a>
+        </div>
+    </div>
+
+    <div class="image-container">
+        <img src="images/aboutimage.jpeg" alt="Full Width Background">
+        <h1 class="centered-heading">About us</h1>
+    </div>
+
+
+    <h2 class="services-heading">Our Services</h2>
+
+    <div class="services-container">
+    
+     <div class="service-card">
+            <img src="images/bp4.jpeg">
+            <div class="service-info">
+                <h3>Hair Styling</h3>
+                <a href="#" class="btn">Learn more</a>
+            </div>
+        </div>
+
+        <div class="service-card">
+            <img src="images/bp5.jpg">
+            <div class="service-info">
+                <h3>Hair Colouring</h3>
+                <a href="#" class="btn">Learn more</a>
+            </div>
+        </div>
+
+        <div class="service-card">
+            <img src="images/bp6.jpeg">
+            <div class="service-info">
+                <h3>Nail Care</h3>
+                <a href="#" class="btn">Learn more</a>
+            </div>
+        </div>
+
+        <div class="service-card" >
+            <img src="images/bp7.jpg">
+            <div class="service-info">
+                <h3>Skin Care</h3>
+                <a href="#" class="btn">Learn more</a>
+            </div>
+        </div>
+
+        <div class="service-card">
+            <img src="images/bp8.jpg">
+            <div class="service-info">
+                <h3>Hair Treatment</h3>
+                <a href="#" class="btn">Learn more</a>
+            </div>
+        </div>
+
+        <div class="service-card">
+            <img src="images/bp9.jpg">
+            <div class="service-info">
+                <h3>Medifacials</h3>
+                <a href="#" class="btn">Learn more</a>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <img src="images/pexels-heyho-7195805.jpg" alt="Background Image" class="background-image">
+        <div class="feedback-overlay">
+            <div class="feedback-content" id="feedback-text">
+        
+            </div>
+        </div>
+        <div class="feedback-container">
+            <div class="feedback-icons">
+                <img src="images/t2.png" alt="Person 1" data-feedback='{"name": "Mohammad Imran", "rating": 5, "note": "Mohammad Imran cut my hair and did a fabulous job. The ambience of the new salon in Edapally is excellent and of international standards. Keep up the good work! Hoping to see a branch open up in Bangalore soon."}'>
+                <img src="images/t3.png" alt="Person 2" data-feedback='{"name": "Jane Smith", "rating": 4, "note": "Amazing experience! The stylists here really know what they are doing. Will definitely come again."}'>
+                <img src="images/t5.png" alt="Person 3" data-feedback='{"name": "John Doe", "rating": 5, "note": "The salon has a very professional atmosphere. Great staff and wonderful service!"}'>
+                <img src="images/t6.png" alt="Person 4" data-feedback='{"name": "Emily Brown", "rating": 4, "note": "Loved the way they took care of my hair! A perfect place for a good makeover."}'>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        const feedbackText = document.getElementById('feedback-text');
+        const feedbackIcons = document.querySelectorAll('.feedback-icons img');
+
+        let currentFeedback = 0;
+
+        const feedbacks = Array.from(feedbackIcons).map(icon => JSON.parse(icon.getAttribute('data-feedback')));
+
+        function generateStars(rating) {
+            let stars = '';
+            for (let i = 0; i < 5; i++) {
+                stars += i < rating ? '★' : '☆';
+            }
+            return stars;
+        }
+
+        function updateFeedback() {
+            const { name, rating, note } = feedbacks[currentFeedback];
+
+            feedbackText.innerHTML = `
+                <div class="feedback-name">${name}</div>
+                <div class="feedback-rating">${generateStars(rating)}</div>
+                <div class="feedback-note">${note}</div>
+            `;
+            feedbackText.classList.add('fade-in');
+            
+            currentFeedback = (currentFeedback + 1) % feedbacks.length;
+        }
+
+        
+        setInterval(updateFeedback, 2000);
+
+    
+        updateFeedback();
+
+    
+        feedbackIcons.forEach((icon, index) => {
+            icon.addEventListener('mouseover', () => {
+                const { name, rating, note } = feedbacks[index];
+                feedbackText.innerHTML = `
+                    <div class="feedback-name">${name}</div>
+                    <div class="feedback-rating">${generateStars(rating)}</div>
+                    <div class="feedback-note">${note}</div>
+                `;
+            });
+        });
+    </script>
+
+
+
+<footer>
+    <p>© 2024 Simple Website. All rights reserved.</p>
+    <p>Contact us: <a href="mailto:info@simplewebsite.com">info@simplewebsite.com</a> | Phone: +123 456 7890</p>
+    <p>Follow us on:
+        <a href="#">Facebook</a> |
+        <a href="#">Twitter</a> |
+        <a href="#">Instagram</a>
+    </p>
+</footer>
+
+
+        </body>
+        </html>
